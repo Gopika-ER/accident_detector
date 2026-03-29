@@ -1,27 +1,13 @@
 import torch
 import streamlit as st
-import os
-import sys
-
-# --- ULTIMATE CLOUD SELF-HEALING HOTFIX ---
-# YOLO forces the installation of GUI OpenCV which crashes Streamlit servers.
-# This code dynamically intercepts the crash and physically uninstalls the broken 
-# drivers from the Streamlit server's memory, replacing it with headless on the fly!
-try:
-    import cv2
-except ImportError as e:
-    if "libGL" in str(e) or "DLL" in str(e):
-        print("CRITICAL: Streamlit cloud error detected. Hot-swapping OpenCV to headless mode...")
-        os.system(f"{sys.executable} -m pip uninstall -y opencv-python opencv-contrib-python opencv-python-headless")
-        os.system(f"{sys.executable} -m pip install opencv-python-headless")
-        import cv2
+import cv2
 
 import time
 import tempfile
 import os
 from model import load_model
 from detector import detect_accident, calculate_speed
-from utils import play_alarm, save_frame, send_email
+from alert_system import play_alarm, save_frame, send_email
 
 st.set_page_config(page_title="Live AI Accident Detector", layout="wide")
 st.title("🚨 Live CCTV AI Accident Detection")
