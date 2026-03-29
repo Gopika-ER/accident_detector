@@ -1,5 +1,5 @@
 import cv2
-from playsound import playsound
+
 import smtplib
 from email.message import EmailMessage
 import time
@@ -14,6 +14,7 @@ load_dotenv()
 def play_alarm():
     if os.path.exists("alarm.wav"):
         try:
+            from playsound import playsound
             # block=False prevents the code from freezing while the alarm plays
             playsound("alarm.wav", block=False)
         except Exception:
