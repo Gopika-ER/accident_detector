@@ -2,7 +2,7 @@ import cv2
 import time
 from model import load_model
 from detector import detect_accident, calculate_speed
-from utils import play_alarm, save_frame, send_email
+from alert_system import play_alarm, save_frame, send_email
 
 model = load_model()
 cap = cv2.VideoCapture(0)
